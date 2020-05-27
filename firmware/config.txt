@@ -1,0 +1,16 @@
+# For more options and information see
+# http://rpf.io/configtxt
+# https://www.raspberrypi.org/documentation/configuration/config-txt/boot.md
+# Some settings may impact device functionality. See link above for details
+
+# Starts in 64bit mode
+arm_64bit=1
+
+# ARM start in 64-mode
+arm_control=0x200
+
+# By default the Raspberry Pi 3 B and B+ starts in EL2.
+# To change it to EL3, uncomment the 2 parameters below.
+# Remember to put the cores 1, 2 and 3 to sleep during booting time.
+kernel_old=1
+disable_commandline_tags=1
