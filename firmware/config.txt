@@ -12,5 +12,6 @@ arm_control=0x200
 # By default the Raspberry Pi 3 B and B+ starts in EL2.
 # To change it to EL3, uncomment the 2 parameters below.
 # Remember to put the cores 1, 2 and 3 to sleep during booting time.
+# Set kernel_old to 1 to load the kernel to memory address 0x0.
 kernel_old=1
 disable_commandline_tags=1

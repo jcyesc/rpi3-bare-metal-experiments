@@ -2,7 +2,7 @@
 #include "stdint.h"
 #include "uart.h"
 
-#define BARE_METAL_KERNEL_VERSION "0.1.8"
+#define BARE_METAL_KERNEL_VERSION "0.1.9"
 
 void generate_synchronous_interrupt();
 
@@ -11,12 +11,19 @@ void generate_synchronous_interrupt();
  */
 void main() {
     uart_init();
-    uart_puts("main: Bare Metal EL3 " BARE_METAL_KERNEL_VERSION "\n");
+    uart_puts("main: Bare Metal EL3 interrupts " BARE_METAL_KERNEL_VERSION "\n");
 
     processor_print_all_info();
 
-    // asm volatile ("smc #1");
+    // One interrupt will be generated here.
+    asm volatile ("smc #15");
+
+    // Another interrupt will be generated here.
     generate_synchronous_interrupt();
+
+    // Uncomment this line and see what happens and see if this could be
+    // corrected.
+    // uart_puts("Returning from the synchronous interrupt!!\n");
 
     while (1) {
         uart_puts("\nmain: Write a char: ");
@@ -30,4 +37,5 @@ void generate_synchronous_interrupt() {
     uint32_t invalid_address  __attribute__ ((unused)) =
         *((volatile unsigned int*) 0xFFFFFFFFFFFFFFFF);
 }
+
 

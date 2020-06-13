@@ -8,11 +8,11 @@
 SECTIONS {
 
 	/*
-	 * The starting address in the RPi 3 Model B and B+
-	 * 524288 bytes = 0x80000
+     * The starting address in the RPi 3 Model B and B+
+     * is 0x0 when kernel_old=1 is set in config.txt
 	 */
-    . = 0x80000;
-    
+    . = 0x0;
+
 	/* Contains the binary image. */
 	.text : {
 		/* Contains the boot code */
